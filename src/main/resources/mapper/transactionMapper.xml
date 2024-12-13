@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.banksystem.mapper.TransactionMapper">
+    <insert id="AddTransaction" parameterType="com.example.banksystem.conService.TransactionItem">
+        INSERT INTO Transaction (accountid,transactiondate,reccardid,acpcardid,transactiontype,amount)
+        VALUES (#{accountid},#{transactiondate}, #{reccardid}, #{acpcardid},#{transactiontype},#{amount})
+    </insert>
+    <select id="GetAllTransaction" resultType="com.example.banksystem.conService.TransactionItem">
+        SELECT * FROM Transaction WHERE reccardid=#{cardid} OR acpcardid=#{cardid}
+    </select>
+</mapper>

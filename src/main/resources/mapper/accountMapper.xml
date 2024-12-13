@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.banksystem.mapper.AccountMapper">
+    <select id="GetByID" resultType="com.example.banksystem.conService.AccountInformation">
+        SELECT * from Card where cardid=#{cardid}
+    </select>
+
+    <select id="GetByIDAndPwd" resultType="com.example.banksystem.conService.AccountInformation">
+        SELECT * from Card where cardid=#{cardid} and cardpasswd=#{cardpasswd}
+    </select>
+    <insert id="AddAccount" parameterType="com.example.banksystem.conService.AccountInformation">
+        INSERT INTO Card (cardid, personid, cardpasswd,balance,opendate)
+        VALUES (#{cardid}, #{personid}, #{cardpasswd},#{balance},#{opendate})
+    </insert>
+    <update id="PutDownBalance" parameterType="com.example.banksystem.conService.AccountInformation">
+        UPDATE Card SET balance = #{balance} <!--,personid=#{personid}, cardpasswd=#{cardpasswd},opendate=#{opendate} -->
+        WHERE cardid = #{cardid}
+    </update>
+
+</mapper>

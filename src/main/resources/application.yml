@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: BankSystem
+
+  datasource:
+    url: jdbc:mysql://82.156.214.214/DBBS
+    username: "000002"
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+server:
+  port: 8081

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.banksystem.mapper.EmployeeMapper">
+    <select id="getById" resultType="com.example.banksystem.conService.EmployeeInformation">
+        SELECT * from Employee where employeeid=#{employeeid}
+    </select>
+
+    <select id="getByidAndPwd" resultType="com.example.banksystem.conService.EmployeeInformation">
+        SELECT * from Employee where employeeid=#{employeeid} and employeepwd=#{employeepwd}
+    </select>
+</mapper>

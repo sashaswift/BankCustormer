@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.banksystem.mapper.DepositMapper">
+    <select id="GetById" resultType="com.example.banksystem.conService.DepositInformationUser">
+        SELECT * from Depositcard where id=#{id}
+    </select>
+
+    <select id="GetByIdAndKinds" resultType="com.example.banksystem.conService.DepositInformationUser">
+        SELECT * from Depositcard where cardid=#{cardid} and depositid IN (SELECT depositid from Depositmanage where remark=#{remark})
+    </select>
+
+    <select id="GetAllKinds" resultType="com.example.banksystem.conService.DepositInformationUser">
+        SELECT * from Depositcard where cardid=#{cardid}
+    </select>
+    <!--<insert id="AddDeposit" parameterType="com.example.banksystem.conService.DepositInformationUser">
+        INSERT INTO Depositcard (id,depositid,startdata,cardid,depositbalance)
+        VALUES (#{id}, #{depositid}, #{startdata},#{cardid},#{depositbalance})
+    </insert>-->
+
+    <select id="AddDeposit" statementType="CALLABLE">
+        {CALL Transaction2(#{vdepositid, mode=IN, jdbcType=CHAR, javaType=java.lang.String},#{vcardid, mode=IN, jdbcType=CHAR, javaType=java.lang.String}, #{vamount, mode=IN, jdbcType=DECIMAL, javaType=java.math.BigDecimal})}
+    </select>
+
+    <select id="UpdateDepositAdd" statementType="CALLABLE">
+        {CALL Transaction1(#{vdepositid, mode=IN, jdbcType=CHAR, javaType=java.lang.String},#{vcardid, mode=IN, jdbcType=CHAR, javaType=java.lang.String}, #{vamount, mode=IN, jdbcType=DECIMAL, javaType=java.math.BigDecimal})}
+    </select>
+
+    <select id="UpdateDepositWith" statementType="CALLABLE">
+        {CALL Transaction3(#{vdepositid, mode=IN, jdbcType=CHAR, javaType=java.lang.String},#{vcardid, mode=IN, jdbcType=CHAR, javaType=java.lang.String}, #{vamount, mode=IN, jdbcType=DECIMAL, javaType=java.math.BigDecimal})}
+    </select>
+    <delete id="DeleteById" parameterType="java.lang.String" >
+        delete from Depositcard where id=#{id}
+    </delete>
+</mapper>
+
+
+
+

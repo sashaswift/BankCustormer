@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.banksystem.mapper.CustomerMapper">
+    <select id="getById" resultType="com.example.banksystem.conService.CustomerInformation">
+        SELECT * from Customer where personid=#{id} or phone=#{id}
+    </select>
+
+    <select id="getByidAndPwd" resultType="com.example.banksystem.conService.CustomerInformation">
+        SELECT * from Customer where (personid=#{id} or phone=#{id}) and passwd=#{passwd}
+    </select>
+    <insert id="addCustomer" parameterType="com.example.banksystem.conService.CustomerInformation">
+        INSERT INTO Customer (personid, name, gender,phone,address,passwd)
+        VALUES (#{personid}, #{name}, #{gender},#{phone},#{address},#{passwd})
+    </insert>
+    <update id="updateCustomer" parameterType="com.example.banksystem.conService.CustomerInformation">
+        UPDATE Customer SET personid=#{personid}, name=#{name}, gender=#{gender},phone=#{phone},address=#{address},passwd=#{passwd}
+        WHERE personid=#{personid} or phone=#{phone}
+    </update>
+</mapper>
