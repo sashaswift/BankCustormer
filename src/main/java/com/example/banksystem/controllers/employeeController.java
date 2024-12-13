@@ -87,6 +87,7 @@ public class employeeController {
         List<AccountInformation> accountInformations=accountMapper.GetByIDAndPwd(cardid,cardpasswd);
         List<AccountVo> accountVos=new ArrayList<>();
         for(AccountInformation accountInformation:accountInformations){
+            if(!accountInformation.accountstate.equals("正常")) return Result.fail("该卡已注销或冻结，无法使用");
             AccountVo accountVo=new AccountVo();
             BeanUtils.copyProperties(accountInformation,accountVo);
             accountVos.add(accountVo);
