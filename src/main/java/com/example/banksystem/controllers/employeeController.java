@@ -150,7 +150,7 @@ public class employeeController {
         }else{
             //poiDepositService.save(depositinformationuser);
             //depositMapper.AddDeposit(depositinformationuser);
-            depositMapper.AddDeposit(depositid,depositinformationuser.cardid,depositinformationuser.depositbalance);
+            depositMapper.AddDeposit(depositinformationuser.depositid,depositinformationuser.cardid,depositinformationuser.depositbalance);
         }
         //depositMapper.AddDeposit(depositinformationuser);
         List <DepositInformationUser> depositInformationUsers=depositMapper.GetByIdAndKinds(depositinformationuser.cardid,"活期存款");
